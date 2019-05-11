@@ -1075,17 +1075,10 @@ contract Ownable {
     }
 }
 
-// File: contracts/token/DozerDoll.sol
-
 pragma solidity ^0.5.0;
 
 
-
-
-
-
-
-contract DozerDoll is ERC721Full, ERC721Mintable, ERC721MetadataMintable, ERC721Burnable, Ownable {
+contract ArtHack is ERC721Full, ERC721Mintable, ERC721MetadataMintable, ERC721Burnable, Ownable {
     using SafeMath for uint256;
 
     constructor (string memory _name, string memory _symbol) public
