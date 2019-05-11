@@ -23,7 +23,7 @@ pragma solidity ^0.5.0;
 
 /**
  * @title ERC721 Non-Fungible Token Standard basic interface
- * @dev see https://github.com/ethereum/EIPs/blob/master/EIPS/eip-721.md
+ * @dev see https://eips.ethereum.org/EIPS/eip-721
  */
 contract IERC721 is IERC165 {
     event Transfer(address indexed from, address indexed to, uint256 indexed tokenId);
@@ -44,6 +44,7 @@ contract IERC721 is IERC165 {
 
     function safeTransferFrom(address from, address to, uint256 tokenId, bytes memory data) public;
 }
+
 
 // File: openzeppelin-solidity/contracts/token/ERC721/IERC721Receiver.sol
 
