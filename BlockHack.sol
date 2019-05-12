@@ -176,7 +176,6 @@ library Address {
 
 pragma solidity ^0.5.0;
 
-
 /**
  * @title ERC165
  * @author Matt Condon (@shrugs)
@@ -221,11 +220,6 @@ contract ERC165 is IERC165 {
 // File: openzeppelin-solidity/contracts/token/ERC721/ERC721.sol
 
 pragma solidity ^0.5.0;
-
-
-
-
-
 
 /**
  * @title ERC721 Non-Fungible Token Standard basic implementation
@@ -509,7 +503,6 @@ contract ERC721 is ERC165, IERC721 {
 
 pragma solidity ^0.5.0;
 
-
 /**
  * @title ERC-721 Non-Fungible Token Standard, optional enumeration extension
  * @dev See https://github.com/ethereum/EIPs/blob/master/EIPS/eip-721.md
@@ -524,9 +517,6 @@ contract IERC721Enumerable is IERC721 {
 // File: openzeppelin-solidity/contracts/token/ERC721/ERC721Enumerable.sol
 
 pragma solidity ^0.5.0;
-
-
-
 
 /**
  * @title ERC-721 Non-Fungible Token with optional enumeration extension logic
@@ -740,9 +730,6 @@ contract IERC721Metadata is IERC721 {
 
 pragma solidity ^0.5.0;
 
-
-
-
 contract ERC721Metadata is ERC165, ERC721, IERC721Metadata {
     // Token name
     string private _name;
@@ -829,9 +816,6 @@ contract ERC721Metadata is ERC165, ERC721, IERC721Metadata {
 // File: openzeppelin-solidity/contracts/token/ERC721/ERC721Full.sol
 
 pragma solidity ^0.5.0;
-
-
-
 
 /**
  * @title Full ERC721 Token
@@ -937,8 +921,6 @@ contract MinterRole {
 
 pragma solidity ^0.5.0;
 
-
-
 /**
  * @title ERC721Mintable
  * @dev ERC721 minting logic
@@ -959,9 +941,6 @@ contract ERC721Mintable is ERC721, MinterRole {
 // File: openzeppelin-solidity/contracts/token/ERC721/ERC721MetadataMintable.sol
 
 pragma solidity ^0.5.0;
-
-
-
 
 /**
  * @title ERC721MetadataMintable
@@ -985,7 +964,6 @@ contract ERC721MetadataMintable is ERC721, ERC721Metadata, MinterRole {
 // File: openzeppelin-solidity/contracts/token/ERC721/ERC721Burnable.sol
 
 pragma solidity ^0.5.0;
-
 
 /**
  * @title ERC721 Burnable Token
@@ -1082,6 +1060,12 @@ pragma solidity ^0.5.0;
 
 contract ArtHack is ERC721Full, ERC721Mintable, ERC721MetadataMintable, ERC721Burnable, Ownable {
     using SafeMath for uint256;
+    
+    
+    mapping(address => uint) public balances
+    mapping (uint => string) campaigns;
+
+    uint256 numCampaigns = 0;
 
     constructor (string memory _name, string memory _symbol) public
         ERC721Mintable()
@@ -1090,6 +1074,8 @@ contract ArtHack is ERC721Full, ERC721Mintable, ERC721MetadataMintable, ERC721Bu
 
 
     function mintUniqueTokenTo(address _to, uint256 _tokenId, string memory _tokenURI) public onlyOwner{
+        uint256 _tokenId = numCampaigns++;
+        
         _mint(_to, _tokenId); // token 생성
         _setTokenURI(_tokenId, _tokenURI); // token metadata add
     }
