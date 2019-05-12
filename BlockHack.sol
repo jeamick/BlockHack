@@ -1062,9 +1062,7 @@ contract ArtHack is ERC721Full, ERC721Mintable, ERC721MetadataMintable, ERC721Bu
     using SafeMath for uint256;
     
     
-    mapping(address => uint) public balances
-    mapping (uint => string) campaigns;
-
+    mapping (uint => string) public campaigns;
     uint256 public numCampaigns = 0;
 
     constructor (string memory _name, string memory _symbol) public
