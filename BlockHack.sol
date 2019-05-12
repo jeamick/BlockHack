@@ -1065,7 +1065,7 @@ contract ArtHack is ERC721Full, ERC721Mintable, ERC721MetadataMintable, ERC721Bu
     mapping(address => uint) public balances
     mapping (uint => string) campaigns;
 
-    uint256 numCampaigns = 0;
+    uint256 public numCampaigns = 0;
 
     constructor (string memory _name, string memory _symbol) public
         ERC721Mintable()
@@ -1073,11 +1073,12 @@ contract ArtHack is ERC721Full, ERC721Mintable, ERC721MetadataMintable, ERC721Bu
     }
 
 
-    function mintUniqueTokenTo(address _to, uint256 _tokenId, string memory _tokenURI) public onlyOwner{
+    function mintUniqueTokenTo(address _to, string memory _tokenURI) public onlyOwner{
         uint256 _tokenId = numCampaigns++;
         
         _mint(_to, _tokenId); // token 생성
         _setTokenURI(_tokenId, _tokenURI); // token metadata add
+        campaigns[_tokenId] = _tokenURI; // Mapping index art list
     }
 
 
